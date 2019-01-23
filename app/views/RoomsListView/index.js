@@ -3,7 +3,6 @@
 // import React from 'react';
 // import PropTypes from 'prop-types';
 // import Icon from 'react-native-vector-icons/Ionicons';
-// import { Platform, View, TextInput, FlatList } from 'react-native';
 // import { connect } from 'react-redux';
 // import * as actions from '../../actions';
 // import * as server from '../../actions/connect';
@@ -12,7 +11,7 @@
 import RoomItem from '../../presentation/RoomItem';
 //import Banner from '../../containers/Banner';
 // import { goRoom } from '../../containers/routes/NavigationService';
-// import Header from '../../containers/Header';
+import Header from '../../containers/Header';
 import RoomsListHeader from './Header';
 import styles from './styles';
 // import debounce from '../../utils/debounce';
@@ -221,7 +220,7 @@ import styles from './styles';
 // 		</View>)
 // }
 import React, { Component } from 'react'
-import { Text, View, FlatList, TextInput } from 'react-native'
+import { Text, View, FlatList, TextInput ,Platform} from 'react-native'
 
 export default class RoomsListView extends Component {
 
@@ -243,8 +242,6 @@ export default class RoomsListView extends Component {
 					unread: 1,
 					userMentions: 1,
 					id: 'adsdfg',
-					customEmojis: PropTypes.object,
-					user: PropTypes.object,
 					key:1,
 					id:1,
 					baseUrl:'ds'
@@ -260,8 +257,6 @@ export default class RoomsListView extends Component {
 					unread: 1,
 					userMentions: 1,
 					id: 'adsdfgdsd',
-					customEmojis: PropTypes.object,
-					user: PropTypes.object,
 					key:2,
 					id:2,
 					baseUrl:'ds'

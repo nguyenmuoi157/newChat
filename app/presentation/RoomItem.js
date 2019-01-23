@@ -1,15 +1,19 @@
-import React from 'react';
-import moment from 'moment';
-import PropTypes from 'prop-types';
+// import moment from 'moment';
+// import PropTypes from 'prop-types';
+
+// import { connect } from 'react-redux';
+// import SimpleMarkdown from 'simple-markdown';
+
+// import Avatar from '../containers/Avatar';
+// import Status from '../containers/status';
+// import Markdown from '../containers/message/Markdown';
+
+import React,{PureComponent} from 'react';
+
 import { View, Text, StyleSheet } from 'react-native';
 
-import { connect } from 'react-redux';
-import SimpleMarkdown from 'simple-markdown';
+//import Touch from '../utils/touch/index'; //eslint-disable-line
 
-import Avatar from '../containers/Avatar';
-import Status from '../containers/status';
-import Touch from '../utils/touch/index'; //eslint-disable-line
-import Markdown from '../containers/message/Markdown';
 
 const styles = StyleSheet.create({
 	container: {
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
 		borderColor: '#fff'
 	}
 });
-const markdownStyle = { block: { marginBottom: 0, flexWrap: 'wrap', flexDirection: 'row' } };
+//const markdownStyle = { block: { marginBottom: 0, flexWrap: 'wrap', flexDirection: 'row' } };
 
 const parseInline = (parse, content, state) => {
 	const isCurrentlyInline = state.inline || false;
@@ -104,107 +108,107 @@ const parseInline = (parse, content, state) => {
 	return result;
 };
 const parseCaptureInline = (capture, parse, state) => ({ content: parseInline(parse, capture[1], state) });
-const customRules = {
-	strong: {
-		order: -4,
-		match: SimpleMarkdown.inlineRegex(/^\*\*([\s\S]+?)\*\*(?!\*)/),
-		parse: parseCaptureInline,
-		react: (node, output, state) => ({
-			type: 'strong',
-			key: state.key,
-			props: {
-				children: output(node.content, state)
-			}
-		})
-	},
-	text: {
-		order: -3,
-		match: SimpleMarkdown.inlineRegex(/^[\s\S]+?(?=[^0-9A-Za-z\s\u00c0-\uffff]|\n\n| {2,}\n|\w+:\S|$)/),
-		parse: capture => ({ content: capture[0] }),
-		react: node => node.content
-	}
-};
+// const customRules = {
+// 	strong: {
+// 		order: -4,
+// 		match: SimpleMarkdown.inlineRegex(/^\*\*([\s\S]+?)\*\*(?!\*)/),
+// 		parse: parseCaptureInline,
+// 		react: (node, output, state) => ({
+// 			type: 'strong',
+// 			key: state.key,
+// 			props: {
+// 				children: output(node.content, state)
+// 			}
+// 		})
+// 	},
+// 	text: {
+// 		order: -3,
+// 		match: SimpleMarkdown.inlineRegex(/^[\s\S]+?(?=[^0-9A-Za-z\s\u00c0-\uffff]|\n\n| {2,}\n|\w+:\S|$)/),
+// 		parse: capture => ({ content: capture[0] }),
+// 		react: node => node.content
+// 	}
+// };
 
-const renderNumber = (unread, userMentions) => {
-	if (!unread || unread <= 0) {
-		return;
-	}
+// const renderNumber = (unread, userMentions) => {
+// 	if (!unread || unread <= 0) {
+// 		return;
+// 	}
 
-	if (unread >= 1000) {
-		unread = '999+';
-	}
+// 	if (unread >= 1000) {
+// 		unread = '999+';
+// 	}
 
-	if (userMentions > 0) {
-		unread = `@ ${ unread }`;
-	}
+// 	if (userMentions > 0) {
+// 		unread = `@ ${ unread }`;
+// 	}
 
-	return (
-		<Text style={styles.number}>
-			{ unread }
-		</Text>
-	);
-};
+// 	return (
+// 		<Text style={styles.number}>
+// 			{ unread }
+// 		</Text>
+// 	);
+// };
 
-@connect(state => ({
-	user: state.login && state.login.user,
-	StoreLastMessage: state.settings.Store_Last_Message,
-	customEmojis: state.customEmojis
-}))
-export default class RoomItem extends React.PureComponent {
-	static propTypes = {
-		type: PropTypes.string.isRequired,
-		name: PropTypes.string.isRequired,
-		StoreLastMessage: PropTypes.bool,
-		_updatedAt: PropTypes.instanceOf(Date),
-		lastMessage: PropTypes.object,
-		favorite: PropTypes.bool,
-		alert: PropTypes.bool,
-		unread: PropTypes.number,
-		userMentions: PropTypes.number,
-		id: PropTypes.string,
-		onPress: PropTypes.func,
-		customEmojis: PropTypes.object,
-		user: PropTypes.object
-	}
+// @connect(state => ({
+// 	user: state.login && state.login.user,
+// 	StoreLastMessage: state.settings.Store_Last_Message,
+// 	customEmojis: state.customEmojis
+// }))
+export default class RoomItem extends PureComponent {
+	// static propTypes = {
+	// 	type: PropTypes.string.isRequired,
+	// 	name: PropTypes.string.isRequired,
+	// 	StoreLastMessage: PropTypes.bool,
+	// 	_updatedAt: PropTypes.instanceOf(Date),
+	// 	lastMessage: PropTypes.object,
+	// 	favorite: PropTypes.bool,
+	// 	alert: PropTypes.bool,
+	// 	unread: PropTypes.number,
+	// 	userMentions: PropTypes.number,
+	// 	id: PropTypes.string,
+	// 	onPress: PropTypes.func,
+	// 	customEmojis: PropTypes.object,
+	// 	user: PropTypes.object
+	// }
 
-	get icon() {
-		const {
-			type, name, id
-		} = this.props;
-		return (<Avatar text={name} size={46} type={type}>{type === 'd' ? <Status style={styles.status} id={id} /> : null }</Avatar>);
-	}
+	// get icon() {
+	// 	const {
+	// 		type, name, id
+	// 	} = this.props;
+	// 	return (<Avatar text={name} size={46} type={type}>{type === 'd' ? <Status style={styles.status} id={id} /> : null }</Avatar>);
+	// }
 
-	get lastMessage() {
-		const {
-			lastMessage, type
-		} = this.props;
+	// get lastMessage() {
+	// 	const {
+	// 		lastMessage, type
+	// 	} = this.props;
 
-		if (!this.props.StoreLastMessage) {
-			return '';
-		}
-		if (!lastMessage) {
-			return 'No Message';
-		}
+	// 	if (!this.props.StoreLastMessage) {
+	// 		return '';
+	// 	}
+	// 	if (!lastMessage) {
+	// 		return 'No Message';
+	// 	}
 
-		let prefix = '';
+	// 	let prefix = '';
 
-		if (lastMessage.u.username === this.props.user.username) {
-			prefix = 'You: ';
-		}	else if (type !== 'd') {
-			prefix = `${ lastMessage.u.username }: `;
-		}
+	// 	if (lastMessage.u.username === this.props.user.username) {
+	// 		prefix = 'You: ';
+	// 	}	else if (type !== 'd') {
+	// 		prefix = `${ lastMessage.u.username }: `;
+	// 	}
 
-		const msg = `${ prefix }${ lastMessage.msg.replace(/[\n\t\r]/igm, '') }`;
-		const maxChars = 35;
-		return `${ msg.slice(0, maxChars) }${ msg.replace(/:[a-z0-9]+:/gi, ':::').length > maxChars ? '...' : '' }`;
-	}
+	// 	const msg = `${ prefix }${ lastMessage.msg.replace(/[\n\t\r]/igm, '') }`;
+	// 	const maxChars = 35;
+	// 	return `${ msg.slice(0, maxChars) }${ msg.replace(/:[a-z0-9]+:/gi, ':::').length > maxChars ? '...' : '' }`;
+	// }
 
-	formatDate = date => moment(date).calendar(null, {
-		lastDay: '[Yesterday]',
-		sameDay: 'h:mm A',
-		lastWeek: 'dddd',
-		sameElse: 'MMM D'
-	})
+	// formatDate = date => moment(date).calendar(null, {
+	// 	lastDay: '[Yesterday]',
+	// 	sameDay: 'h:mm A',
+	// 	lastWeek: 'dddd',
+	// 	sameElse: 'MMM D'
+	// })
 
 	render() {
 		const {
@@ -227,7 +231,7 @@ export default class RoomItem extends React.PureComponent {
 		accessibilityLabel += `, last message ${ date }`;
 
 		return (
-			<Touch onPress={this.props.onPress} underlayColor='#FFFFFF' activeOpacity={0.5} accessibilityLabel={accessibilityLabel} accessibilityTraits='selected'>
+			<TouchableNativeFeedback onPress={this.props.onPress} underlayColor='#FFFFFF' activeOpacity={0.5} accessibilityLabel={accessibilityLabel} accessibilityTraits='selected'>
 				<View style={[styles.container, favorite && styles.favorite]}>
 					{/* {this.icon} */}
 					<Text>icon</Text>
@@ -247,10 +251,11 @@ export default class RoomItem extends React.PureComponent {
 								numberOfLines={1}
 							/>
 							{renderNumber(unread, userMentions)} */}
+							<Text>fdfkd</Text>
 						</View>
 					</View>
 				</View>
-			</Touch>
+			</TouchableNativeFeedback>
 		);
 	}
 }

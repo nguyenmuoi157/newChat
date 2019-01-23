@@ -233,15 +233,14 @@ export default class RoomItem extends PureComponent {
 		return (
 			<TouchableNativeFeedback onPress={this.props.onPress} underlayColor='#FFFFFF' activeOpacity={0.5} accessibilityLabel={accessibilityLabel} accessibilityTraits='selected'>
 				<View style={[styles.container, favorite && styles.favorite]}>
-					{/* {this.icon} */}
-					<Text>icon</Text>
+					{this.icon}
 					<View style={styles.roomNameView}>
 						<View style={styles.firstRow}>
 							<Text style={[styles.roomName, alert && styles.alert]} ellipsizeMode='tail' numberOfLines={1}>{ name }</Text>
-							{/* {_updatedAt ? <Text style={[styles.update, alert && styles.updateAlert]} ellipsizeMode='tail' numberOfLines={1}>{ date }</Text> : null} */}
+							{_updatedAt ? <Text style={[styles.update, alert && styles.updateAlert]} ellipsizeMode='tail' numberOfLines={1}>{ date }</Text> : null}
 						</View>
 						<View style={styles.row}>
-							{/* <Markdown
+							<Markdown
 								msg={this.lastMessage}
 								customEmojis={customEmojis}
 								style={styles.lastMessage}
@@ -250,7 +249,7 @@ export default class RoomItem extends PureComponent {
 								renderInline
 								numberOfLines={1}
 							/>
-							{renderNumber(unread, userMentions)} */}
+							{renderNumber(unread, userMentions)}
 							<Text>fdfkd</Text>
 						</View>
 					</View>

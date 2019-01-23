@@ -233,12 +233,31 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
+import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 export default class RoomsListHeaderView extends Component {
   render() {
     return (
-      <View>
-        <Text> RoomsListHeaderView </Text>
-      </View>
+      <Header>
+          <Left>
+            <Button transparent>
+              <Icon name='arrow-back' />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Header</Title>
+          </Body>
+          <Right>
+            <Button transparent>
+              <Icon name='search' />
+            </Button>
+            <Button transparent>
+              <Icon name='heart' />
+            </Button>
+            <Button transparent>
+              <Icon name='more' />
+            </Button>
+          </Right>
+        </Header>
     )
   }
 }
